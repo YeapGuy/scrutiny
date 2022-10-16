@@ -46,5 +46,6 @@ RUN chmod +x /opt/scrutiny/bin/scrutiny && \
     mkdir -p /opt/scrutiny/config && \
     chmod -R ugo+rwx /opt/scrutiny/config
 
+HEALTHCHECK CMD if [ "$(curl http://localhost:8080/api/health)" = "{"success":true}" ]; then echo 0; else echo 1; fi
 
 CMD ["/init"]
